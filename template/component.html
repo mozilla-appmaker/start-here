@@ -1,0 +1,91 @@
+<polymer-element name="ceci-<%= name %>" attributes="textcolor buttoncolor buttonactivecolor label value" extends="ceci-element"
+  label="Click Me" textcolor="#ffffff" buttoncolor="#4DB227" buttonactivecolor="#358915">
+  <template>
+    <link rel="stylesheet" href="component.css"></link>
+    <button id="<%= name %>" on-click="{{click}}"></button>
+    <shadow></shadow>
+    <script type="text/json" id="ceci-definition">
+      {
+        "name": "<%= name %>",
+        "tags": ["<%= name %>", "click", "tap"],
+        "thumbnail": "./thumbnail.png",
+        "broadcasts": {
+          "click": {
+            "label": "Click",
+            "description": "Occurs when <%= name %> is clicked.",
+            "default": true
+          }
+        },
+        "listeners": {
+          "click": {
+            "description": "Causes a fake click event to occur.",
+            "label": "Click"
+          }
+        },
+        "attributes": {
+          "label": {
+            "label": "Label",
+            "description": "Text shown on the button.",
+            "editable": "text",
+            "listener": true
+          },
+          "value": {
+            "label": "Value",
+            "description": "Value sent by the button.",
+            "editable": "text",
+            "listener": true,
+            "defaultListener": true
+          },
+          "textcolor": {
+            "label": "Text Color",
+            "description": "Color of the text on the button's label.",
+            "editable": "color",
+            "listener": true
+          },
+          "buttoncolor": {
+            "label": "Button Color",
+            "description": "Background color of the button.",
+            "editable": "color",
+            "listener": true
+          },
+          "buttonactivecolor": {
+            "label": "Button Active Color",
+            "description": "Background color of the button while it is being clicked or tapped.",
+            "editable": "color",
+            "listener": true
+          }
+        }
+      }
+    </script>
+  </template>
+  <script>
+    Polymer('ceci-<%= name %>', {
+      ready: function () {
+        this.super();
+
+        var that = this;
+        this.$.<%= js_safe_name %>.addEventListener('mousedown', function (e) {
+          var valueBefore = that.buttoncolor;
+          if (that.buttonactivecolor) {
+            that.$.<%= js_safe_name %>.style.backgroundColor = that.buttonactivecolor;
+            window.addEventListener('mouseup', function (e) {
+              that.$.<%= js_safe_name %>.style.backgroundColor = valueBefore;
+            }, false);
+          }
+        }, false);
+      },
+      click: function () {
+        this.broadcast('click', this.getAttribute('value'));
+      },
+      labelChanged: function (oldValue, newValue) {
+        this.$.<%= js_safe_name %>.innerHTML = newValue;
+      },
+      textcolorChanged: function (oldValue, newValue) {
+        this.$.<%= js_safe_name %>.style.color = newValue;
+      },
+      buttoncolorChanged: function (oldValue, newValue) {
+        this.$.<%= js_safe_name %>.style.backgroundColor = newValue;
+      }
+    });
+  </script>
+</polymer-element>
