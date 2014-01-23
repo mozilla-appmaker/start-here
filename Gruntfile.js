@@ -7,7 +7,13 @@ module.exports = function(grunt) {
   var defaultName = path.basename(process.cwd());
   if (defaultName.indexOf('component-') == 0) {
     defaultName = defaultName.slice('component-'.length, defaultName.length);
-  }
+  };
+  grunt.registerTask('make_js_safe', 'A task that makes JS identifiers out of the prompted data',
+    function() {
+      grunt.config.set('template.component.options.data.js_safe_name',
+        grunt.config.get('template.component.options.data.name').replace(/[\W_]+/g, '_').replace(/^(\d)/, '_$1'));
+    }
+  );
   grunt.initConfig({
     prompt: {
       target: {
@@ -117,7 +123,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-prompt');
   grunt.loadNpmTasks('grunt-template');
 
-  grunt.registerTask('customize', ['prompt','template']);
+  grunt.registerTask('customize', ['prompt', 'make_js_safe', 'template']);
   grunt.registerTask('serve', 'start web server to use in designer', function() {
     grunt.event.once('connect.server.listening', function(host, port) {
       var specRunnerUrl = 'http://' + host + ':' + 9001;
@@ -127,8 +133,10 @@ module.exports = function(grunt) {
     grunt.task.run('connect:server');
   });
   grunt.registerTask('default', 'help message', function() {
-    grunt.log.writeln('\'grunt serve\' to display the test runner page');
+    grunt.log.writeln('');
+    grunt.log.writeln('_\'grunt customize\'_ to create your initial component');
+    grunt.log.writeln('_\'grunt lint\'_ to check your component');
+    grunt.log.writeln('_\'grunt serve\'_ to display the test runner page');
   });
-  grunt.registerTask('default', ['customize']);
-  // grunt.registerTask( "default", [ "csslint", "jshint", "inlinelint"]);
+  grunt.registerTask( "lint", [ "csslint", "jshint", "inlinelint"]);
 };
