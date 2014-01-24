@@ -5,9 +5,9 @@ module.exports = function(grunt) {
   var path = require('path');
   // Project configuration.
   var defaultName = path.basename(process.cwd());
-  if (defaultName.indexOf('component-') == 0) {
+  if (defaultName.indexOf('component-') === 0) {
     defaultName = defaultName.slice('component-'.length, defaultName.length);
-  };
+  }
   grunt.registerTask('make_js_safe', 'A task that makes JS identifiers out of the prompted data',
     function() {
       grunt.config.set('template.component.options.data.js_safe_name',
@@ -81,7 +81,8 @@ module.exports = function(grunt) {
     },
     inlinelint: {
       html: ['**/*.html',
-        '!node_modules/**'
+        '!node_modules/**',
+        '!template/**'
       ]
     },
     connect: {
