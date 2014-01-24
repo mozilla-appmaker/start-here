@@ -89,11 +89,14 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 9001,
-          base: __dirname,
+          base: path.normalize(__dirname + '/..'),
           keepalive: true,
+          protocol: 'https',
           open: 9001,
           middleware: function(connect, options) {
             var middlewares = [];
+            // var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+            // middlewares.push(proxy);
             if (!Array.isArray(options.base)) {
               options.base = [options.base];
             }
@@ -127,7 +130,7 @@ module.exports = function(grunt) {
   grunt.registerTask('customize', ['prompt', 'make_js_safe', 'template']);
   grunt.registerTask('serve', 'start web server to use in designer', function() {
     grunt.event.once('connect.server.listening', function(host, port) {
-      var specRunnerUrl = 'http://' + host + ':' + 9001;
+      var specRunnerUrl = 'https://' + host + ':' + 9001 + '/' + path.basename(__dirname);
       grunt.log.writeln('Tell the designer to load: ' + specRunnerUrl + "/component.html");
     });
 
