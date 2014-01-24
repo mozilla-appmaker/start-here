@@ -136,7 +136,13 @@ module.exports = function(grunt) {
 
     grunt.task.run('connect:server');
   });
-  grunt.registerTask('default', 'help message', function() {
+  grunt.registerTask('check_customize', 'see if a component exists, and if not, run customize', function() {
+    if (! grunt.file.exists('component.html')) {
+      grunt.task.run('customize');
+    }
+  });
+  grunt.registerTask('default', ['check_customize', 'serve']);
+  grunt.registerTask('help', 'help message', function() {
     grunt.log.writeln('');
     grunt.log.writeln('_\'grunt customize\'_ to create your initial component');
     grunt.log.writeln('_\'grunt lint\'_ to check your component');
