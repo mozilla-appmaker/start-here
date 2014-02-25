@@ -20,14 +20,20 @@ npm install
 grunt
 ```
 
-###  5. Teach Appmaker where you find your new component
+###  5. Add a Security Exception
 
-* Go to appmaker
-* Sign in
-* In the menu with your email address, click on 'add a component'
-* Specify the URL that step 4 gives you.
+* Load the URL from Step 4 into your browser.
+* The browser will complain that the security certificate is not trusted.
+* That's okay - add an exception, this will allow the component to work in Appmaker.
 
-### 6. Edit component.html
+###  6. Teach Appmaker where you find your new component
+
+* Go to Appmaker.
+* Sign in.
+* In the menu with your email address, click on 'Add a Component'.
+* Specify the URL that Step 4 gives you.
+
+### 7. Edit component.html
 
 As the file is changed, the local server will udpate; Refresh the designer to make it load the new version. (we hope to streamline this later).
 

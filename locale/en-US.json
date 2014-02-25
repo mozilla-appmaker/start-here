@@ -1,0 +1,14 @@
+{
+	"ceci-form-text-input": "form-text-input",
+	"ceci-form-text-input/attributes/label": "Click Me",
+	"ceci-form-text-input/attributes/label/label": "Label",
+	"ceci-form-text-input/attributes/label/description": "Text shown on the button.",
+	"ceci-form-text-input/attributes/value/label": "Value",
+	"ceci-form-text-input/attributes/value/description": "Value sent by the button.",
+	"ceci-form-text-input/attributes/textcolor/label": "Text Color",
+	"ceci-form-text-input/attributes/textcolor/description": "Color of the text on the button's label.",
+	"ceci-form-text-input/attributes/buttoncolor/label": "form-text-input Color",
+	"ceci-form-text-input/attributes/buttoncolor/description": "Background color of the button.",
+	"ceci-form-text-input/attributes/buttonactivecolor/label": "Button Active Color",
+	"ceci-form-text-input/attributes/buttonactivecolor/description": "Background color of the button while it is being clicked or tapped."
+}
