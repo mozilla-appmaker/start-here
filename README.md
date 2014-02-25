@@ -33,7 +33,7 @@ grunt
 * In the menu with your email address, click on 'Add a Component'
 * Specify the URL that Step 4 gives you.
 
-### 6. Edit component.html
+### 7. Edit component.html
 
 As the file is changed, the local server will udpate; Refresh the designer to make it load the new version. (we hope to streamline this later).
 
