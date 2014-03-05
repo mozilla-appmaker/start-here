@@ -1,91 +1,104 @@
-<polymer-element name="ceci-<%= name %>" attributes="textcolor buttoncolor buttonactivecolor label value" extends="ceci-element"
-  label="Click Me" textcolor="#ffffff" buttoncolor="#4DB227" buttonactivecolor="#358915">
+<polymer-element name="ceci-<%= name %>" extends="ceci-element" attributes="unit increment value">
   <template>
-    <link rel="stylesheet" href="component.css"></link>
-    <button id="<%= js_safe_name %>" on-click="{{click}}"></button>
+    <link rel="stylesheet" href="component.css">
+    <div class="counter">
+      <div class="count-wrapper">
+        <span class="count">{{value}}</span>
+        <span class="count-label">{{displayUnit}}</span>
+      </div>
+    </div>
     <shadow></shadow>
     <script type="text/json" id="ceci-definition">
       {
         "name": "<%= name %>",
-        "tags": ["<%= name %>", "click", "tap"],
         "thumbnail": "./thumbnail.png",
+        "description": "Listens for a message and counts",
         "broadcasts": {
-          "click": {
-            "label": "Click",
-            "description": "Occurs when <%= name %> is clicked.",
-            "default": true
+          "currentCount": {
+            "label": "Current Count",
+            "description": "Broadcasts the current count."
           }
         },
         "listeners": {
-          "click": {
-            "description": "Causes a fake click event to occur.",
-            "label": "Click"
+          "countUp": {
+            "description": "Increment the total by the increment value",
+            "label": "Count Up!",
+            "default" : true
+          },
+          "countDown": {
+            "description": "Decrement the total by the increment value",
+            "label": "Count Down"
+          },
+          "resetCount": {
+            "description": "Reset the total to 0.",
+            "label": "Reset Count"
           }
         },
         "attributes": {
-          "label": {
-            "label": "Label",
-            "description": "Text shown on the button.",
-            "editable": "text",
-            "listener": true
+          "unit": {
+            "description": "Name for items which are being counted.",
+            "label": "Unit",
+            "editable": "text"
           },
-          "value": {
-            "label": "Value",
-            "description": "Value sent by the button.",
-            "editable": "text",
-            "listener": true,
-            "defaultListener": true
-          },
-          "textcolor": {
-            "label": "Text Color",
-            "description": "Color of the text on the button's label.",
-            "editable": "color",
-            "listener": true
-          },
-          "buttoncolor": {
-            "label": "Button Color",
-            "description": "Background color of the button.",
-            "editable": "color",
-            "listener": true
-          },
-          "buttonactivecolor": {
-            "label": "Button Active Color",
-            "description": "Background color of the button while it is being clicked or tapped.",
-            "editable": "color",
-            "listener": true
+          "increment": {
+            "description": "Count up or down with this number.",
+            "label": "Increment By",
+            "editable": "number",
+            "min" : 1
           }
         }
       }
     </script>
   </template>
-  <script>
-    Polymer('ceci-<%= name %>', {
-      ready: function () {
-        this.super();
+  <tags>starter,math</tags>
+    <script>
+      Polymer("ceci-<%= name %>", {
+        ready: function() {
+          this.increment = Number(this.increment) || 1;
+          this.value = Number(this.value) || 0;
+          this.super();
+          this.displayUnit = this.unit;
+          this.updateUnit();
+        },
+        value: 0,
+        increment: 1,
+        unit: 'Sprocket',
+        incrementChanged: function(oldValue, newValue) {
+          this.increment = Number(this.increment) || 0;
+        },
+        updateUnit : function(){
+          if (this.unit) {
+            var unit = this.unit.trim();
+            if (unit.length > 0) {
 
-        var that = this;
-        this.$.<%= js_safe_name %>.addEventListener('mousedown', function (e) {
-          var valueBefore = that.buttoncolor;
-          if (that.buttonactivecolor) {
-            that.$.<%= js_safe_name %>.style.backgroundColor = that.buttonactivecolor;
-            window.addEventListener('mouseup', function (e) {
-              that.$.<%= js_safe_name %>.style.backgroundColor = valueBefore;
-            }, false);
+              var pluralChar = "";
+              if((Number(this.value) !== 1) && (unit[unit.length - 1] !== 's')){
+                pluralChar = "s";
+              }
+
+              if(unit[unit.length - 1] === unit[unit.length - 1].toUpperCase()) {
+                pluralChar = pluralChar.toUpperCase()
+              }
+              this.displayUnit = " " + unit + pluralChar;
+            }
           }
-        }, false);
-      },
-      click: function () {
-        this.broadcast('click', this.getAttribute('value'));
-      },
-      labelChanged: function (oldValue, newValue) {
-        this.$.<%= js_safe_name %>.innerHTML = newValue;
-      },
-      textcolorChanged: function (oldValue, newValue) {
-        this.$.<%= js_safe_name %>.style.color = newValue;
-      },
-      buttoncolorChanged: function (oldValue, newValue) {
-        this.$.<%= js_safe_name %>.style.backgroundColor = newValue;
-      }
-    });
-  </script>
+        },
+        unitChanged: function() {
+          this.updateUnit();
+        },
+        valueChanged: function() {
+          this.broadcast("currentCount", this.value);
+          this.updateUnit();
+        },
+        countUp: function() {
+          this.value = Number(this.value) + Number(this.increment, 10);
+        },
+        countDown: function() {
+          this.value = Number(this.value) - Number(this.increment, 10);
+        },
+        resetCount: function() {
+          this.value = 0;
+        }
+      });
+    </script>
 </polymer-element>
