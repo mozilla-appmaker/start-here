@@ -11,6 +11,7 @@
     <script type="text/json" id="ceci-definition">
       {
         "name": "<%= name %>",
+        "taghs": "<%= name %>,math,starter",
         "thumbnail": "./thumbnail.png",
         "description": "Listens for a message and counts",
         "broadcasts": {
@@ -50,7 +51,6 @@
       }
     </script>
   </template>
-  <tags>starter,math</tags>
     <script>
       Polymer("ceci-<%= name %>", {
         ready: function() {
