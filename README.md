@@ -15,7 +15,7 @@ The usual git clone command will work.
 
 ### 4. Install node and grunt
 
-Install [node.js](http://nodejs.org/) on your machine, then install Grunt...
+Install [node.js](http://nodejs.org/) on your machine, then install Grunt via the command line...
 
 ```
 npm install -g grunt-cli
