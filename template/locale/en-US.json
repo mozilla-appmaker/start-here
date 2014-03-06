@@ -1,14 +1,8 @@
 {
 	"ceci-<%= name %>": "<%= name %>",
-	"ceci-<%= name %>/attributes/label": "Click Me",
-	"ceci-<%= name %>/attributes/label/label": "Label",
-	"ceci-<%= name %>/attributes/label/description": "Text shown on the button.",
-	"ceci-<%= name %>/attributes/value/label": "Value",
-	"ceci-<%= name %>/attributes/value/description": "Value sent by the button.",
-	"ceci-<%= name %>/attributes/textcolor/label": "Text Color",
-	"ceci-<%= name %>/attributes/textcolor/description": "Color of the text on the button's label.",
-	"ceci-<%= name %>/attributes/buttoncolor/label": "<%= name %> Color",
-	"ceci-<%= name %>/attributes/buttoncolor/description": "Background color of the button.",
-	"ceci-<%= name %>/attributes/buttonactivecolor/label": "Button Active Color",
-	"ceci-<%= name %>/attributes/buttonactivecolor/description": "Background color of the button while it is being clicked or tapped."
+	"ceci-<%= name %>/description": "Listens for a message and counts",
+	"ceci-<%= name %>/attributes/unit/label": "Unit",
+	"ceci-<%= name %>/attributes/unit/description": "Name for items which are being counted.",
+	"ceci-<%= name %>/attributes/increment/label": "Increment By",
+	"ceci-<%= name %>/attributes/increment/description": "Count up or down with this number."
 }
