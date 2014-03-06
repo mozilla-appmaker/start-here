@@ -12,7 +12,19 @@ In the right hand column, click on the screwdriver/wrench icon for Settings.
 
 The usual git clone command will work.
 
-###  4. In your terminal window:
+
+### 3. Install node and grunt
+
+Install [node.js](http://nodejs.org/) on your machine, then install Grunt...
+
+```
+npm install -g grunt-cli
+```
+
+
+###  4. Install the Component
+
+On the command line...
 
 ```
 cd <wherever you cloned it>
