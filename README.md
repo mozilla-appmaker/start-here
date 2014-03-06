@@ -45,7 +45,7 @@ You'll be prompted to name your component after running the `grunt` command. You
 * Go to [Appmaker](https://appmaker-integration.herokuapp.com/designer) - We'll be using the Integration version for the workshop.
 * Sign in.
 * In the menu with your email address, click on 'Add a Component'.
-* Specify the URL that Step 4 gives you.
+* Specify the URL that Step 5 gives you.
 
 ### 8. Edit the Component
 
