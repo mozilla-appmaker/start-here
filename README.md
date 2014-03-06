@@ -32,6 +32,8 @@ npm install
 grunt
 ```
 
+You'll be prompted to name your component after running the `grunt` command. You can pick a new name or leave it blank.
+
 ###  6. Add a Security Exception
 
 * Load the URL from Step 4 into your browser.
