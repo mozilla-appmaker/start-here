@@ -55,7 +55,7 @@ As the component files are changed, the local server will udpate; Refresh the de
 
 ### 9. Use Grunt Lint to catch Errors
 
-To catch errors in the component code, run the following command on the command line in your component folder...
+To catch errors in your component code, run the following command on the command line in your component folder...
 
 ```
 grunt lint
