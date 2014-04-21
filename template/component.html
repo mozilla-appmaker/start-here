@@ -1,4 +1,46 @@
 <polymer-element name="ceci-<%= name %>" extends="ceci-element" attributes="unit increment value">
+  <ceci-definition>
+    {
+      "name": "<%= name %>",
+      "tags": "<%= name %>,math,starter",
+      "thumbnail": "./thumbnail.png",
+      "description": "Listens for a message and counts",
+      "broadcasts": {
+        "currentCount": {
+          "label": "Current Count",
+          "description": "Broadcasts the current count."
+        }
+      },
+      "listeners": {
+        "countUp": {
+          "description": "Increment the total by the increment value",
+          "label": "Count Up!",
+          "default" : true
+        },
+        "countDown": {
+          "description": "Decrement the total by the increment value",
+          "label": "Count Down"
+        },
+        "resetCount": {
+          "description": "Reset the total to 0.",
+          "label": "Reset Count"
+        }
+      },
+      "attributes": {
+        "unit": {
+          "description": "Name for items which are being counted.",
+          "label": "Unit",
+          "editable": "text"
+        },
+        "increment": {
+          "description": "Count up or down with this number.",
+          "label": "Increment By",
+          "editable": "number",
+          "min" : 1
+        }
+      }
+    }
+  </ceci-definition>
   <template>
     <link rel="stylesheet" href="component.css">
     <div class="counter">
@@ -8,48 +50,6 @@
       </div>
     </div>
     <shadow></shadow>
-    <script type="text/json" id="ceci-definition">
-      {
-        "name": "<%= name %>",
-        "tags": "<%= name %>,math,starter",
-        "thumbnail": "./thumbnail.png",
-        "description": "Listens for a message and counts",
-        "broadcasts": {
-          "currentCount": {
-            "label": "Current Count",
-            "description": "Broadcasts the current count."
-          }
-        },
-        "listeners": {
-          "countUp": {
-            "description": "Increment the total by the increment value",
-            "label": "Count Up!",
-            "default" : true
-          },
-          "countDown": {
-            "description": "Decrement the total by the increment value",
-            "label": "Count Down"
-          },
-          "resetCount": {
-            "description": "Reset the total to 0.",
-            "label": "Reset Count"
-          }
-        },
-        "attributes": {
-          "unit": {
-            "description": "Name for items which are being counted.",
-            "label": "Unit",
-            "editable": "text"
-          },
-          "increment": {
-            "description": "Count up or down with this number.",
-            "label": "Increment By",
-            "editable": "number",
-            "min" : 1
-          }
-        }
-      }
-    </script>
   </template>
     <script>
       Polymer("ceci-<%= name %>", {
