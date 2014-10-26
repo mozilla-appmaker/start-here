@@ -42,7 +42,7 @@ You'll be prompted to name your component after running the `grunt` command. You
 
 ###  7. Teach Appmaker where you find your new component
 
-* Go to [Appmaker](https://appmaker-integration.herokuapp.com/designer) - We'll be using the Integration version for the workshop.
+* Go to [Appmaker](https://appmaker.mofodev.net) - We'll be using the Development version for the workshop.
 * Sign in.
 * In the menu with your email address, click on 'Add a Component'.
 * Specify the URL that Step 5 gives you.
